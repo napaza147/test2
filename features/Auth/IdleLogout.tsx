@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { useClerk, useAuth } from '@clerk/clerk-react'
 
-const IDLE_TIMEOUT_MS  = 10 * 60 * 1000  // 10 minutes
-const WARNING_BEFORE_MS = 60 * 1000       // warn 60s before logout
+const IDLE_TIMEOUT_MS  = 30000 // 10 minutes
+const WARNING_BEFORE_MS = 10000       // warn 60s before logout
 
 const ACTIVITY_EVENTS = ['mousemove', 'keydown', 'click', 'touchstart', 'scroll']
 

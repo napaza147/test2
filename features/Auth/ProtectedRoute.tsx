@@ -6,7 +6,7 @@ interface Props {
   redirectTo?: string
 }
 
-export default function ProtectedRoute({ children, redirectTo = '/IA/usuario/sesion' }: Props) {
+export default function ProtectedRoute({ children, redirectTo = '/sesion' }: Props) {
   const { isLoaded, isSignedIn } = useAuth()
 
   // Still loading auth state — render nothing to avoid flash

@@ -9,9 +9,9 @@ export default function Signin() {
       padding: '1rem',
     }}>
       <ClerkSignIn
-        routing="hash"
-        signUpUrl="#/IA/usuario/crearcuenta"
-        fallbackRedirectUrl="#/IA/cambia"
+        routing="virtual"
+        signUpUrl="/crearcuenta"
+        fallbackRedirectUrl="/cambia"
       />
     </div>
 );}
