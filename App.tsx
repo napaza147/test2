@@ -15,10 +15,10 @@ import Transactions from './features/Account/Transactions';
 import Alarms from './features/Account/Alarms';
 import Profile from './features/Account/Profile';
 // Add-ons
-import { createHashRouter, RouterProvider, Navigate, Routes } from "react-router-dom";
+import { createHashRouter, RouterProvider, Navigate } from "react-router-dom";
 import MoreServices from './features/MoreServices';
-
-
+// Auth
+import ProtectedRoute from './features/Auth/ProtectedRroute';
 
 
 const router = createHashRouter([
@@ -31,20 +31,46 @@ const router = createHashRouter([
     element: <IA />,
     children: [
       { index: true, element: <Navigate to="cambia" /> },
-      { path: "cambia", element: <Converter /> },
-      { path: "envivo", element: <LiveRates /> },
-      { path: "acerca", element: <About /> },
-      { path: "usuario/*", element: <Account /> },
-      { path: "usuario/cuentasbancarias/*", element: <BankAccounts /> },
-      { path: "idioma/*", element: <Language /> },
-      { path: "usuario/sesion/*", element: <SignIn /> },
-      { path: "usuario/crearcuenta/*", element: <SignUp /> },
-      { path: "usuario/*", element: <Account /> },
-      { path: "usuario/perfil/*", element: <Profile /> },
-      { path: "usuario/transacciones/*", element: <Transactions /> },
-      { path: "usuario/alertas/*", element: <Alarms /> },
-      { path: "ayuda/*", element: <Help /> },
-      { path: "masservicios/*", element: <MoreServices /> },
+
+      // Public routes
+      { path: "cambia",    element: <Converter /> },
+      { path: "envivo",    element: <LiveRates /> },
+      { path: "acerca",    element: <About /> },
+      { path: "ayuda/*",   element: <Help /> },
+
+      // Auth routes (public)
+      { path: "usuario/sesion/*",       element: <SignIn /> },
+      { path: "usuario/crearcuenta/*",  element: <SignUp /> },
+
+      // Protected routes — require sign in
+      {
+        path: "usuario/*",
+        element: <ProtectedRoute><Account /></ProtectedRoute>,
+      },
+      {
+        path: "usuario/perfil/*",
+        element: <ProtectedRoute><Profile /></ProtectedRoute>,
+      },
+      {
+        path: "usuario/transacciones/*",
+        element: <ProtectedRoute><Transactions /></ProtectedRoute>,
+      },
+      {
+        path: "usuario/alertas/*",
+        element: <ProtectedRoute><Alarms /></ProtectedRoute>,
+      },
+      {
+        path: "usuario/cuentasbancarias/*",
+        element: <ProtectedRoute><BankAccounts /></ProtectedRoute>,
+      },
+      {
+        path: "idioma/*",
+        element: <ProtectedRoute><Language /></ProtectedRoute>,
+      },
+      {
+        path: "masservicios/*",
+        element: <ProtectedRoute><MoreServices /></ProtectedRoute>,
+      },
     ],
   },
 ]);

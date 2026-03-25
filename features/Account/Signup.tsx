@@ -1,13 +1,18 @@
+import { SignUp as ClerkSignUp } from "@clerk/clerk-react";
 
-import { Link } from "react-router-dom";
 export default function Signup() {
   return (
-    <div id="wd-signup-screen">
-      <h3>Sign up</h3>
-      <input placeholder="username" className="wd-username" /><br/>
-      <input placeholder="password" type="password" className="wd-password" /><br/>
-      <input placeholder="verify password" type="password" className="wd-password-verify" /><br/>
-      <Link  to="/IA/usuario/crearcuenta" > Sign up </Link><br />
-      <Link  to="/IA/usuario/sesion" >Sign in</Link>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+      padding: '1rem',
+    }}>
+      <ClerkSignUp
+        routing="hash"
+        signInUrl="#/IA/usuario/sesion"
+        fallbackRedirectUrl="#/IA/cambia"
+      />
     </div>
 );}
